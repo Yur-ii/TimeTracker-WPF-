@@ -1,0 +1,81 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:xctd="clr-namespace:System.Windows.Controls;assembly=mscorlib"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Closing="Closing_Window"
+        mc:Ignorable="d"
+        Title="Timer" Height="350" Width="470" Loaded="Window_Loaded" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="#FF151515" />
+        </Style>
+    </Window.Resources>
+    <Grid Name="grid1" Background="#FF2E2B2B">
+        <Menu Name="Menu1" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="592" Background="Black">
+            <MenuItem Header="File" Foreground="#FFBFB3B3"  >
+            </MenuItem>
+            <MenuItem Header="Project" Foreground="#FFBFB3B3" >
+                <MenuItem Header="Create">
+                    <TextBox Name="ProjectName" MaxLength="250"  Width="100"></TextBox>
+                    <Button Name="btn" Content="Ok" Click="Create_Project"/>
+                </MenuItem>
+                <MenuItem Header="Delete">
+                    <ListBox x:Name="ViewProject" >
+                        <ListBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Удалить" Click="Delete_Proj"></MenuItem>
+                            </ContextMenu>
+                        </ListBox.ContextMenu>
+                    </ListBox>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="View history" Click="View_History" Foreground="#FFBFB3B3" >
+            </MenuItem>
+            <MenuItem Header="Create new line" Click="CreateNewLine_Click" Foreground="#FFBFB3B3" />
+        </Menu>
+        <DataGrid Name="TimerGrid"  AutoGenerateColumns="False" Background="#FF2E2B2B" RowBackground="#FF2E2B2B" ItemsSource="{Binding Source={x:Static local:MainWindow.List}}" CanUserSortColumns="False" CanUserAddRows="False" Margin="0"  BorderThickness="1" HeadersVisibility="Column" GridLinesVisibility="Horizontal" Foreground="#FF9B9090" BorderBrush="#FF36434F" Height="261"  >
+            <DataGrid.Columns>
+                <DataGridComboBoxColumn Header="Project" MinWidth="90" Width="Auto" ItemsSource="{Binding Source={x:Static local:MainWindow.Source}}" SelectedValueBinding="{Binding Title}" />
+                <DataGridTextColumn Header="Comment"  Binding="{Binding Path=Comment}" Width="80"/>
+                <DataGridTextColumn Header="Time" IsReadOnly="True" Binding="{Binding Path=Timer, UpdateSourceTrigger=PropertyChanged}" Width="45"/>
+                <DataGridTemplateColumn Header="" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="StartButton"  Height="32" Width="50" Background="DarkGreen" Content="Start"
+                              Tag="{Binding Path = SelectedIndex, ElementName=TimerGrid}"  Click="Button_Start" BorderBrush="#FF075107" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="TimAdd"  Height="32" Width="75" Content="Change Time" Foreground="#FF9B9090"
+                              Tag="{Binding Path = SelectedIndex, ElementName=TimerGrid}"  Click="Add_Time" BorderBrush="#FF444343" >
+                                <Button.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="Black" Offset="0"/>
+                                        <GradientStop Color="#FF6A3D3D" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Удалить" Click="Delete_Row"></MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        <TextBlock Name="AllTime" Foreground="#FF9B9090" HorizontalAlignment="Left" Margin="283,288,0,0" TextWrapping="Wrap" Text="All time today:" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

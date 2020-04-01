@@ -1,0 +1,27 @@
+﻿<Window x:Class="WpfApp1.ViewHistory"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="ViewHistory" Height="370.5" Width="390.834" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="#FF151515" />
+        </Style>
+    </Window.Resources>
+    <Grid Background="#FF2E2B2B" Margin="0,0,-4,-4" >
+        <TextBlock Name="TotalTime" Foreground="#FF9B9090"  HorizontalAlignment="Left" Margin="232,10,0,0" TextWrapping="Wrap" Text="Total time: " VerticalAlignment="Top" Width="104"/>
+        <DataGrid x:Name="phonesGrid" AutoGenerateColumns="false" Foreground="#FF9B9090"  Background="#FF2E2B2B" RowBackground="#FF2E2B2B"  HorizontalGridLinesBrush="DarkGray" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"  ItemsSource="{Binding Source={x:Static local:ViewHistory.viewInfoData}}" BorderBrush="#FF64819C" Margin="0,37,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Data" Binding="{Binding Path=Data}" Width="90" />
+                <DataGridTextColumn Header="Project" Binding="{Binding Path=Project}" Width="80" />
+                <DataGridTextColumn Header="Comment" Binding="{Binding Path=Comment}" Width="80" />
+                <DataGridTextColumn Header="Time" Binding="{Binding Path=Time}" Width="80" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <ComboBox  Name="dataList"  HorizontalAlignment="Left" Margin="28,10,0,0" VerticalAlignment="Top" Width="86" SelectionChanged="Select_Item_Combobox" BorderBrush="{x:Null}" Foreground="Black" Background="{x:Null}"/>
+    </Grid>
+</Window>
