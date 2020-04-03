@@ -10,14 +10,14 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Closing="Closing_Window"
         mc:Ignorable="d"
-        Title="Timer" Height="350" Width="470" Loaded="Window_Loaded" ResizeMode="NoResize">
+        Title="Timer" MinHeight="350" MinWidth="470" MaxHeight="350" MaxWidth="470" Loaded="Window_Loaded">
     <Window.Resources>
         <Style TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="Background" Value="#FF151515" />
         </Style>
     </Window.Resources>
-    <Grid Name="grid1" Background="#FF2E2B2B">
+    <Grid Name="grid1" Background="#FF2E2B2B" HorizontalAlignment="Left" Width="464" Height="324" VerticalAlignment="Top">
         <Menu Name="Menu1" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="592" Background="Black">
             <MenuItem Header="File" Foreground="#FFBFB3B3"  >
             </MenuItem>
@@ -40,7 +40,7 @@
             </MenuItem>
             <MenuItem Header="Create new line" Click="CreateNewLine_Click" Foreground="#FFBFB3B3" />
         </Menu>
-        <DataGrid Name="TimerGrid"  AutoGenerateColumns="False" Background="#FF2E2B2B" RowBackground="#FF2E2B2B" ItemsSource="{Binding Source={x:Static local:MainWindow.List}}" CanUserSortColumns="False" CanUserAddRows="False" Margin="0"  BorderThickness="1" HeadersVisibility="Column" GridLinesVisibility="Horizontal" Foreground="#FF9B9090" BorderBrush="#FF36434F" Height="261"  >
+        <DataGrid Name="TimerGrid"  AutoGenerateColumns="False" Background="#FF2E2B2B" RowBackground="#FF2E2B2B" ItemsSource="{Binding Source={x:Static local:MainWindow.List}}" CanUserSortColumns="False" CanUserAddRows="False" Margin="0,27,0,34"  BorderThickness="1" HeadersVisibility="Column" GridLinesVisibility="Horizontal" Foreground="#FF9B9090" BorderBrush="#FF36434F"  >
             <DataGrid.Columns>
                 <DataGridComboBoxColumn Header="Project" MinWidth="90" Width="Auto" ItemsSource="{Binding Source={x:Static local:MainWindow.Source}}" SelectedValueBinding="{Binding Title}" />
                 <DataGridTextColumn Header="Comment"  Binding="{Binding Path=Comment}" Width="80"/>
