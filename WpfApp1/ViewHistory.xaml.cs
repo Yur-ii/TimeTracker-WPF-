@@ -1,75 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+
 
 namespace WpfApp1
 {
-    /// <summary>
-    /// Логика взаимодействия для ViewHistory.xaml
-    /// </summary>
-    /// 
-    public class ViewData : INotifyPropertyChanged
-    {
-        public string data;
-        public string project;
-        public string comment;
-        public string time;
-        public string Data
-        {
-            get { return data; }
-            set
-            {
-                data = value;
-                OnPropertyChanged("Title");
-            }
-        }
-        public string Project
-        {
-            get { return project; }
-            set
-            {
-                project = value;
-                OnPropertyChanged("Comment");
-            }
-        }
-        public string Comment
-        {
-            get { return comment; }
-            set
-            {
-                comment = value;
-                OnPropertyChanged("Timer");
-            }
-        }
-        public string Time
-        {
-            get { return time; }
-            set
-            {
-                time = value;
-                OnPropertyChanged("Timer");
-            }
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
-    }
     public partial class ViewHistory : Window
     {
         public static List<string> dates = new List<string>();
@@ -90,6 +27,7 @@ namespace WpfApp1
                 if (check) dates.Add(data.Key.Substring(3,7));
                 check = true;
             }
+            dates.Reverse();
             dataList.ItemsSource = dates;
         }
         public void Select_Item_Combobox(object sender, RoutedEventArgs e) {
@@ -114,7 +52,6 @@ namespace WpfApp1
                 }
             }
             TotalTime.Text = "Total time: " + tim + " h"; 
-
         }
-    }
+    } 
 }

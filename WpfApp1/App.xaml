@@ -12,10 +12,18 @@
                         <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
                             <Rectangle x:Name="outerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   Fill="{TemplateBinding Background}" RadiusX="5" RadiusY="3" />
                             <DockPanel Name="myContentPresenterDockPanel">
-                                <ContentPresenter x:Name="myContentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{TemplateBinding  Content}" TextBlock.Foreground="#FFBFB3B3" />
+                                <ContentPresenter x:Name="myContentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{TemplateBinding  Content}"  />
                             </DockPanel>
                         </Grid>
                     </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="Background" Value="DarkGray"/>
+            <Setter Property="WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <WindowChrome ResizeBorderThickness="10" CaptionHeight="30" GlassFrameThickness="0" CornerRadius="3"/>
                 </Setter.Value>
             </Setter>
         </Style>

@@ -1,22 +1,30 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
 namespace WpfApp1
 {
-    public class Element : INotifyPropertyChanged
+    public class ViewData : INotifyPropertyChanged
     {
-        public string title;
+        public string data;
+        public string project;
         public string comment;
-        public string timer;
-        public double time;
-        public string Title
+        public string time;
+        public string Data
         {
-            get { return title; }
+            get { return data; }
             set
             {
-                title = value;
+                data = value;
                 OnPropertyChanged("Title");
+            }
+        }
+        public string Project
+        {
+            get { return project; }
+            set
+            {
+                project = value;
+                OnPropertyChanged("Comment");
             }
         }
         public string Comment
@@ -25,19 +33,10 @@ namespace WpfApp1
             set
             {
                 comment = value;
-                OnPropertyChanged("Comment");
-            }
-        }
-        public string Timer
-        {
-            get { return timer; }
-            set
-            {
-                timer = value;
                 OnPropertyChanged("Timer");
             }
         }
-        public double Time
+        public string Time
         {
             get { return time; }
             set
