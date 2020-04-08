@@ -22,6 +22,6 @@
                 <DataGridTextColumn Header="Time" Binding="{Binding Path=Time}" Width="80" />
             </DataGrid.Columns>
         </DataGrid>
-        <ComboBox  Name="dataList"  HorizontalAlignment="Left" Margin="28,10,0,0" VerticalAlignment="Top" Width="86" SelectionChanged="Select_Item_Combobox" BorderBrush="{x:Null}" Foreground="Black" Background="{x:Null}" local:ComboBoxHelper.MaxDropDownItems="5"/>
+        <ComboBox  Name="dataList"  HorizontalAlignment="Left" Margin="28,10,0,0" VerticalAlignment="Top" Width="86" SelectionChanged="Select_Item_Combobox" BorderBrush="{x:Null}" Foreground="Black" Background="{x:Null}" MaxDropDownHeight="100"/>
     </Grid>
 </Window>
