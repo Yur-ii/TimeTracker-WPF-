@@ -20,7 +20,7 @@ namespace WpfApp1
         public static ObservableCollection<Element> List { get; set; }
         public static ObservableCollection<string> Source { get; set; }
         public static Dictionary<string, ObservableCollection<Element>> jsonInfo = new Dictionary<string, ObservableCollection<Element>>();
-        public static string date = DateTime.Today.ToString();
+        public static string date = DateTime.Today.ToString("d");
         public int indexButton = 0;
         public bool changeImg = true;
         public int indexTimeAdd = 0;
@@ -40,7 +40,6 @@ namespace WpfApp1
                 WriteInJson(jsonInfo);
             }
             else
-
             {
                 ReadFromJson();
             }
