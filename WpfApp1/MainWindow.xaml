@@ -77,7 +77,8 @@
             </DataGrid.ContextMenu>
         </DataGrid>
         <TextBlock Name="AllTime" Foreground="#FF9B9090" HorizontalAlignment="Left" Margin="283,288,0,0" TextWrapping="Wrap" Text="All time today:" VerticalAlignment="Top"/>
-
+        <Image x:Name="StartImg" Source="/Resources/start.png" Visibility="Hidden"/>
+        <Image x:Name="StopImg" Source="/Resources/stop.png" Visibility="Hidden"/>
     </Grid>
 
 </Window>

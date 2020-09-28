@@ -5,7 +5,6 @@ using System.Windows;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using System.ComponentModel;
 using System.Text.Json;
@@ -53,12 +52,10 @@ namespace WpfApp1
                 ReadFromJsonProject();
             }
         }
-        
         public MainWindow()
         {
             InitializeComponent();
-            Uri iconUri = new Uri(Directory.GetCurrentDirectory() + "/start.png", UriKind.RelativeOrAbsolute);
-            this.Icon = BitmapFrame.Create(iconUri);
+            this.Icon = StartImg.Source;
         }
         void Closing_Window(object sender, CancelEventArgs e) {
             System.Diagnostics.Process.GetCurrentProcess().Kill();
@@ -83,8 +80,7 @@ namespace WpfApp1
             }
             if (changeImg)
             {
-                Uri iconUri = new Uri(Directory.GetCurrentDirectory() + "/stop.png", UriKind.RelativeOrAbsolute);
-                this.Icon = BitmapFrame.Create(iconUri);
+                this.Icon = StopImg.Source;
                 indexButton = index;
                 checkButton = Convert.ToInt32(button.Tag);
                 button.Background = Brushes.SaddleBrown;
@@ -94,8 +90,7 @@ namespace WpfApp1
             }
             else if (!changeImg && (checkButton == Convert.ToInt32(button.Tag)))
             {
-                Uri iconUri = new Uri(Directory.GetCurrentDirectory() + "/start.png", UriKind.RelativeOrAbsolute);
-                this.Icon = BitmapFrame.Create(iconUri);
+                this.Icon = StartImg.Source;
                 button.Background = Brushes.DarkGreen;
                 button.Content = "Start";
                 dt.Stop();
@@ -109,9 +104,6 @@ namespace WpfApp1
             ++List[indexButton].Time;
             List[indexButton].Timer = (List[indexButton].Time / 3600).ToString("F2") + " h";
             AllTime.Text = "All time today: " + (List.Sum(x => x.Time) / 3600).ToString("F2") + " h";
-            //jsonInfo[date] = List;
-            //File.WriteAllText("test.json", string.Empty);
-            //WriteInJson(jsonInfo);
         }
         public string CurrentPath() {
             string currentPath = AppDomain.CurrentDomain.BaseDirectory.ToString();
@@ -154,7 +146,6 @@ namespace WpfApp1
             {
                 readJson = JsonSerializer.Serialize<Dictionary<string, ObservableCollection<Element>>>(jsonInf, options);
                 fs.Write(readJson);
-                //await JsonSerializer.SerializeAsync<Dictionary<string, ObservableCollection<Element>>>(fs, jsonInf, options);
             }
         }
         public static void ReadFromJson()
