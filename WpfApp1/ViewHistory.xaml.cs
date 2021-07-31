@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
 
-
 namespace WpfApp1
 {
     public partial class ViewHistory : Window
@@ -20,11 +19,12 @@ namespace WpfApp1
             viewInfoData.Clear();
             InitializeComponent();
             MainWindow mn = this.Owner as MainWindow;
-            foreach(KeyValuePair<string, ObservableCollection<Element>> data in MainWindow.jsonInfo) {
+            foreach (KeyValuePair<string, ObservableCollection<Element>> data in MainWindow.jsonInfo) {
                 foreach (string str in dates) {
-                    if (str == data.Key.Substring(3, 7)) check = false;
+                    Convert.ToDateTime(data.Key);
+                    if (DateTime.Parse(str) == DateTime.Parse(data.Key)) check = false;
                 }
-                if (check) dates.Add(data.Key.Substring(3,7));
+                if (check) dates.Add(DateTime.Parse(data.Key).ToString("d"));
                 check = true;
             }
             dates.Reverse();
@@ -37,7 +37,7 @@ namespace WpfApp1
             selectedItem = comboBox.SelectedItem.ToString();
             foreach (KeyValuePair<string, ObservableCollection<Element>> data in MainWindow.jsonInfo)
             {
-                if (selectedItem == data.Key.Substring(3, 7)) {
+                if (DateTime.Parse(selectedItem) == DateTime.Parse(data.Key)) {
                     foreach (Element el in data.Value)
                     {
                         viewInfoData.Add(new ViewData { Data = data.Key, Project = el.Title, Comment = el.Comment, Time = el.Timer });

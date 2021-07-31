@@ -12,6 +12,7 @@
         Closing="Closing_Window"
         mc:Ignorable="d"
         Title="Timer"  Loaded="Window_Loaded" MinHeight="350" MinWidth="470" MaxHeight="350" MaxWidth="470" >
+    
     <Window.Resources>
         <Style TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -24,14 +25,14 @@
             </MenuItem>
             <MenuItem Header="Project" Foreground="#FFBFB3B3" >
                 <MenuItem Header="Create Project" Foreground="Black">
-                    <TextBox Name="ProjectName" MaxLength="250"  Width="100"></TextBox>
-                    <Button Name="btn" Content="Create" Click="Create_Project"/>
+                    <TextBox Name="ProjectName" MaxLength="250"  Width="100" KeyDown="OnEnter"></TextBox>
+                    <Button Name="btn" IsDefault="True" Content="Create" Click="Create_Project" />
                 </MenuItem>
                 <MenuItem Header="Delete Project" Foreground="Black">
                     <ListBox x:Name="ViewProject" >
                         <ListBox.ContextMenu>
                             <ContextMenu>
-                                <MenuItem Header="Удалить" Click="Delete_Proj"></MenuItem>
+                                <MenuItem Header="Delete" Click="Delete_Proj"></MenuItem>
                             </ContextMenu>
                         </ListBox.ContextMenu>
                     </ListBox>
@@ -72,7 +73,7 @@
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Удалить" Click="Delete_Row"></MenuItem>
+                    <MenuItem Header="Delete" Click="Delete_Row"></MenuItem>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
@@ -80,5 +81,5 @@
         <Image x:Name="StartImg" Source="/Resources/start.png" Visibility="Hidden"/>
         <Image x:Name="StopImg" Source="/Resources/stop.png" Visibility="Hidden"/>
     </Grid>
-
 </Window>
+    

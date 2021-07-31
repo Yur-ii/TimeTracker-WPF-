@@ -9,6 +9,8 @@ using System.Windows.Threading;
 using System.ComponentModel;
 using System.Text.Json;
 using System.IO;
+using System.Windows.Input;
+using System.Globalization;
 
 namespace WpfApp1
 {
@@ -28,6 +30,7 @@ namespace WpfApp1
         public static string readJson;
         DispatcherTimer dt = new DispatcherTimer();
         static MainWindow() {
+            CultureInfo.CurrentUICulture = new CultureInfo("en", false);
             List = new ObservableCollection<Element>() {
                 new Element()
             };
@@ -195,6 +198,13 @@ namespace WpfApp1
             ViewHistory view = new ViewHistory();
             view.Owner = this;
             view.ShowDialog();
+        }
+        public void OnEnter(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                Create_Project(null, new RoutedEventArgs());
+            }
         }
     }
 }

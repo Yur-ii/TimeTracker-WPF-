@@ -24,7 +24,7 @@ namespace WpfApp1
             }
             else
             {
-                if ((e.Key >= Key.D0 && e.Key <= Key.D9) || e.Key == Key.OemComma)
+                if ((e.Key >= Key.D0 && e.Key <= Key.D9) || e.Key == Key.OemPeriod)
                     e.Handled = false;
                 else e.Handled = true;
             }
