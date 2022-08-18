@@ -6,6 +6,7 @@ namespace WpfApp1
 {
     public class Element : INotifyPropertyChanged
     {
+        //testcommecnt
         public string title;
         public string comment;
         public string timer;
